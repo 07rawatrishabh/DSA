@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public final class main {
+public final class  NextRound {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
