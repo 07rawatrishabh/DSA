@@ -5,65 +5,36 @@ public final class main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String a = br.readLine();
-        String b = br.readLine();
-        int n = a.length();
-        int m = b.length();
-        for (int i = 0; i < n; i++) {
-            char c = a.charAt(i);
-            char d = b.charAt(i);
-            if (c >= 'a' && c <= 'z') {
-                if (d >= 'a' && d <= 'z') {
-                    if (c != d) {
-                        if (c < d) {
-                            System.out.println("-1");
-                            return;
-                        } else {
-                            System.out.println("1");
-                            return;
-                        }
-                    }
-                } else {
-                    d = (char) (d + 32);
-                    if (c != d) {
-                        if (c < d) {
-                            System.out.println("-1");
-                            return;
-                        } else {
-                            System.out.println("1");
-                            return;
-                        }
-                    }
-
-                }
-            } else {
-                if (d >= 'a' && d <= 'z') {
-                    c = (char) (c + 32);
-                    if (c != d) {
-                        if (c < d) {
-                            System.out.println("-1");
-                            return;
-                        } else {
-                            System.out.println("1");
-                            return;
-                        }
-                    }
-
-                } else {
-                    if (c != d) {
-                        if (c < d) {
-                            System.out.println("-1");
-                            return;
-                        } else {
-                            System.out.println("1");
-                            return;
-                        }
-                    }
-                }
+        int n = Integer.parseInt(br.readLine());
+        while (n-- > 0) {
+            int m = Integer.parseInt(br.readLine());
+            String s[] = br.readLine().trim().split(" ");
+            int a[] = new int[m];
+            for (int i = 0; i < m; i++) {
+                a[i] = Integer.parseInt(s[i]);
             }
 
+            if (a[0] == -1 && a[m - 1] == -1) {
+                a[0] = 0;
+                a[m - 1] = 0;
+            } else if (a[0] == -1) {
+                a[0] = a[m - 1];
+            } else if (a[m - 1] == -1) {
+                a[m - 1] = a[0];
+            }
+
+            for (int i = 1; i < m - 1; i++) {
+                if (a[i] == -1) {
+                    a[i] = 0;
+                }
+            }
+            System.out.println(Math.abs(a[0] - a[m - 1]));
+            // System.out.println();
+            for (int i = 0; i < m; i++) {
+                System.out.print(a[i] + " ");
+            }
+            System.out.println();
         }
-        System.out.println(0);
 
     }
 
