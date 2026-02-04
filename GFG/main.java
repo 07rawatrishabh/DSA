@@ -1,43 +1,32 @@
-import java.util.*;
 class Solution {
-    public int sumSubMins(int[] arr) {
+    public int maxCircularSum(int arr[]) {
         // code here
-
-        int ans=0;
-        Stack<Integer>st=new Stack<>();
-        int ls[]=new int[arr.length];
-        int rs[]=new int[arr.length];
-
+        int sol1= f(arr);
+        int sum=0;
+        int max=Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
-             while(!st.isEmpty()&&arr[st.peek()]>arr[i]){ 
-                st.pop();
-             }
-             if(st.isEmpty()){
-                ls[i]=-1;
-             }
-             else{
-                ls[i]=st.peek();
-             }
-             st.push(i);
+            sum+=arr[i];
+            arr[i]=-arr[i];
+            max=Math.max(max,arr[i]);
         }
-        st=new Stack<>();
-        for(int i=arr.length-1;i>=0;i--){
-             while(!st.isEmpty()&&arr[st.peek()]>arr[i]){ 
-                st.pop();
-             }
-             if(st.isEmpty()){
-                rs[i]=arr.length;
-             }
-             else{
-                rs[i]=st.peek();
-             }
-             st.push(i);
-        }
-      
-        for(int i=0;i<arr.length;i++){
-            ans+=(rs[i]-i)*(i-ls[i])*arr[i];
-        }
-        return ans;
+
+        int sol2=sum+f(arr);
+        return Math.max(Math.max(sol1,sol2),max);
+        
     }
+
+public static int f(int a[]){
+    int max=0;
+    int sum=0;
+    for(int i:a){
+        sum+=i;
+        max=Math.max(max,sum);
+        if(sum<0){
+            sum=0;
+        }
+    }
+    return max;
 }
-       
+
+
+}

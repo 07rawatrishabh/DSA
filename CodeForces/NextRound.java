@@ -24,7 +24,7 @@ public final class  NextRound {
 
                 System.out.println(ans);
             }
-        } else {
+        } else { 
             int rans = 0;
             for (int i = 0; i < n; i++) {
                 if (Integer.parseInt(arr[i]) >= 1 && Integer.parseInt(arr[i]) >= Integer.parseInt(arr[k - 1])) {
